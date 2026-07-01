@@ -36,7 +36,7 @@ if "active_tab" not in st.session_state:
     st.session_state.active_tab = 0
 
 # ============================================================
-# CSS — STICKY TABS + ULTRA COMPACT ORDERS
+# CSS
 # ============================================================
 st.markdown("""
 <style>
@@ -64,7 +64,6 @@ st.markdown("""
         padding: 6px 0 !important;
         margin: 0 !important;
         border-bottom: 2px solid #e2e8f0 !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
         gap: 2px !important;
         flex-wrap: nowrap !important;
     }
@@ -452,8 +451,6 @@ def render_dashboard():
     else:
         st.info("🛒 Cart is empty. Browse the Shop!")
     st.markdown("---")
-    # Add Order button has been removed.
-    st.markdown("---")
     if st.session_state.selected_order:
         render_order_detail(st.session_state.selected_order)
         return
@@ -531,7 +528,7 @@ def render_shop():
     st.info("💡 Orders: Processing → (1 min) → Shipped → (1 min) → Delivered.")
 
 # ============================================================
-# MAIN LAYOUT — STICKY TABS WITH QUERY PARAM
+# MAIN LAYOUT
 # ============================================================
 tab_param = st.query_params.get("tab", "Chat")
 if tab_param == "Shop":
@@ -552,7 +549,6 @@ for i, tab in enumerate(tabs):
         elif i == 2:
             render_shop()
 
-# JavaScript to automatically click the correct tab if query param is set
 if tab_param != "Chat":
     st.markdown(f"""
     <script>
@@ -562,5 +558,4 @@ if tab_param != "Chat":
         }}
     </script>
     """, unsafe_allow_html=True)
-    # Clear the query param to avoid repeated redirects
     st.query_params.clear()

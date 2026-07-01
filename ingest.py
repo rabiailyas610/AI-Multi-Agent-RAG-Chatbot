@@ -6,7 +6,6 @@ import faiss
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
 
@@ -15,9 +14,22 @@ INDEX_FILE = "faiss_index.bin"
 META_FILE = "faiss_meta.pkl"
 CHECKPOINT_FILE = "checkpoint.pkl"
 
+import google.genai
+from typing import List
+
+class GeminiEmbeddings:
+    def __init__(self, api_key: str, model: str = "models/gemini-embedding-001"):
+        self.client = google.genai.Client(api_key=api_key)
+        self.model = model
+    
+    def embed_query(self, text: str) -> List[float]:
+        response = self.client.models.embed_content(
+            model=self.model,
+            contents=text
+        )
+        return response.embeddings[0].values
 
 def load_documents():
-    """Load PDFs, Markdown, and Text files from the documents folder."""
     all_docs = []
     for filename in os.listdir(DOCS_FOLDER):
         path = os.path.join(DOCS_FOLDER, filename)
@@ -32,12 +44,11 @@ def load_documents():
             loader = TextLoader(path, encoding="utf-8")
             docs = loader.load()
             for doc in docs:
-                doc.metadata["source"] = f"{filename}"  # Clean source name
+                doc.metadata["source"] = f"{filename}"
             all_docs.extend(docs)
             print(f"Loaded Text File: {filename}")
 
     return all_docs
-
 
 def main():
     print("Loading documents...")
@@ -50,10 +61,10 @@ def main():
     total = len(chunks)
     print(f"Total chunks: {total}")
 
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-2-preview",
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
-        request_options={"timeout": 60}
+    # 🔥 FINAL FIX: Using correct model name from the list
+    embeddings = GeminiEmbeddings(
+        api_key=os.getenv("GOOGLE_API_KEY"),
+        model="models/gemini-embedding-001"
     )
 
     # Load checkpoint if exists
@@ -80,17 +91,15 @@ def main():
                 emb = embeddings.embed_query(chunk.page_content)
                 texts.append(chunk.page_content)
                 
-                # 🔥 FIX: Chunk ID add kiya taake sources unique rahein
                 metadatas.append({
                     "source": str(chunk.metadata.get("source", "unknown")),
                     "page": chunk.metadata.get("page", -1),
-                    "chunk_id": idx  # Unique number har chunk ke liye
+                    "chunk_id": idx
                 })
                 vectors.append(emb)
                 print(f"[{idx + 1}/{total}] Embedded.", flush=True)
                 success = True
 
-                # Save checkpoint every 10 chunks
                 if (idx + 1) % 10 == 0:
                     with open(CHECKPOINT_FILE, "wb") as f:
                         pickle.dump({
@@ -132,7 +141,7 @@ def main():
         os.remove(CHECKPOINT_FILE)
 
     print(f"Done! Indexed {index.ntotal} vectors.")
-
+    print("Ab aap 'streamlit run app.py' chala sakti hain.")
 
 if __name__ == "__main__":
     main()

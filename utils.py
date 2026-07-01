@@ -1,11 +1,10 @@
-# utils.py
 import os
 import pickle
 import json
 import datetime
 import streamlit as st
 from dotenv import load_dotenv
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 import faiss
 from config import INDEX_FILE, META_FILE, CHATS_FILE, ORDERS_FILE
 
@@ -61,11 +60,43 @@ def load_resources():
     with open(META_FILE, "rb") as f:
         meta = pickle.load(f)
     
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="gemini-embedding-2-preview",
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
-        request_options={"timeout": 25}
+    # --- FAISS + GEMINI LOADER ---
+@st.cache_resource
+def load_resources():
+    index = faiss.read_index(INDEX_FILE)
+    with open(META_FILE, "rb") as f:
+        meta = pickle.load(f)
+    
+    import google.genai
+    from typing import List
+    
+    class GeminiEmbeddings:
+        def __init__(self, api_key: str, model: str = "models/gemini-embedding-001"):
+            self.client = google.genai.Client(api_key=api_key)
+            self.model = model
+        
+        def embed_query(self, text: str) -> List[float]:
+            response = self.client.models.embed_content(
+                model=self.model,
+                contents=text
+            )
+            return response.embeddings[0].values
+        
+        def embed_documents(self, texts: List[str]) -> List[List[float]]:
+            result = []
+            for text in texts:
+                response = self.client.models.embed_content(
+                    model=self.model,
+                    contents=text
+                )
+                result.append(response.embeddings[0].values)
+            return result
+    
+    embeddings = GeminiEmbeddings(
+        api_key=os.getenv("GOOGLE_API_KEY"),
+        model="models/gemini-embedding-001"
     )
+    
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
         temperature=0.2,
