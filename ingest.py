@@ -4,34 +4,45 @@ import pickle
 import numpy as np
 import faiss
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from google.genai.errors import ClientError
 
 load_dotenv()
 
 DOCS_FOLDER = "documents"
 INDEX_FILE = "faiss_index.bin"
 META_FILE = "faiss_meta.pkl"
+CHECKPOINT_FILE = "checkpoint.pkl"
 
 
 def load_documents():
+    """Load PDFs, Markdown, and Text files from the documents folder."""
     all_docs = []
     for filename in os.listdir(DOCS_FOLDER):
+        path = os.path.join(DOCS_FOLDER, filename)
+
         if filename.endswith(".pdf"):
-            path = os.path.join(DOCS_FOLDER, filename)
             loader = PyPDFLoader(path)
             docs = loader.load()
             all_docs.extend(docs)
-            print(f"Loaded: {filename} ({len(docs)} pages)")
+            print(f"Loaded PDF: {filename}")
+
+        elif filename.endswith(".md") or filename.endswith(".txt"):
+            loader = TextLoader(path, encoding="utf-8")
+            docs = loader.load()
+            for doc in docs:
+                doc.metadata["source"] = f"{filename}"  # Clean source name
+            all_docs.extend(docs)
+            print(f"Loaded Text File: {filename}")
+
     return all_docs
 
 
 def main():
-    print("Loading PDFs...")
+    print("Loading documents...")
     documents = load_documents()
-    print(f"Total pages: {len(documents)}")
+    print(f"Total pages/documents: {len(documents)}")
 
     print("Splitting into chunks...")
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
@@ -45,31 +56,62 @@ def main():
         request_options={"timeout": 60}
     )
 
-    texts = []
-    metadatas = []
-    vectors = []
+    # Load checkpoint if exists
+    if os.path.exists(CHECKPOINT_FILE):
+        print("Checkpoint found — resuming...")
+        with open(CHECKPOINT_FILE, "rb") as f:
+            checkpoint = pickle.load(f)
+        texts = checkpoint["texts"]
+        metadatas = checkpoint["metadatas"]
+        vectors = checkpoint["vectors"]
+        start_idx = checkpoint["next_idx"]
+        print(f"Resuming from chunk {start_idx + 1}/{total}")
+    else:
+        texts, metadatas, vectors = [], [], []
+        start_idx = 0
 
-    print(f"Embedding {total} chunks one-by-one...", flush=True)
-    for idx, chunk in enumerate(chunks, start=1):
+    print(f"Embedding chunks {start_idx + 1} to {total}...")
+    for idx in range(start_idx, total):
+        chunk = chunks[idx]
         success = False
+
         while not success:
             try:
                 emb = embeddings.embed_query(chunk.page_content)
                 texts.append(chunk.page_content)
+                
+                # 🔥 FIX: Chunk ID add kiya taake sources unique rahein
                 metadatas.append({
                     "source": str(chunk.metadata.get("source", "unknown")),
-                    "page": chunk.metadata.get("page", -1)
+                    "page": chunk.metadata.get("page", -1),
+                    "chunk_id": idx  # Unique number har chunk ke liye
                 })
                 vectors.append(emb)
-                print(f"[{idx}/{total}] Embedded.", flush=True)
+                print(f"[{idx + 1}/{total}] Embedded.", flush=True)
                 success = True
-            except ClientError as e:
-                if "RESOURCE_EXHAUSTED" in str(e):
-                    print(f"[{idx}/{total}] Rate limit hit, waiting 30s...", flush=True)
+
+                # Save checkpoint every 10 chunks
+                if (idx + 1) % 10 == 0:
+                    with open(CHECKPOINT_FILE, "wb") as f:
+                        pickle.dump({
+                            "texts": texts,
+                            "metadatas": metadatas,
+                            "vectors": vectors,
+                            "next_idx": idx + 1
+                        }, f)
+
+            except Exception as e:
+                error_str = str(e)
+                if "RESOURCE_EXHAUSTED" in error_str or "429" in error_str:
+                    print(f"[{idx + 1}/{total}] Rate limit — waiting 30s...", flush=True)
                     time.sleep(30)
+                elif "503" in error_str or "UNAVAILABLE" in error_str:
+                    print(f"[{idx + 1}/{total}] Server unavailable — waiting 15s...", flush=True)
+                    time.sleep(15)
                 else:
-                    print(f"[{idx}/{total}] Error: {e}", flush=True)
-                    raise
+                    print(f"[{idx + 1}/{total}] Unexpected error: {e}", flush=True)
+                    time.sleep(10)
+
         time.sleep(0.5)
 
     print("Building FAISS index...", flush=True)
@@ -81,13 +123,15 @@ def main():
     index = faiss.IndexFlatIP(dim)
     index.add(vectors_np)
 
-    print("Saving index + metadata to disk...", flush=True)
+    print("Saving index + metadata...", flush=True)
     faiss.write_index(index, INDEX_FILE)
     with open(META_FILE, "wb") as f:
         pickle.dump({"texts": texts, "metadatas": metadatas}, f)
 
-    print("Done! FAISS index built and saved.")
-    print(f"Total vectors indexed: {index.ntotal}")
+    if os.path.exists(CHECKPOINT_FILE):
+        os.remove(CHECKPOINT_FILE)
+
+    print(f"Done! Indexed {index.ntotal} vectors.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,355 @@
+{
+  "1782890950250": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "/how are you"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm doing well, thank you for asking! How can I assist you further today?",
+        "sources": []
+      }
+    ],
+    "title": "hi",
+    "timestamp": "2026-07-01T12:29:33.802937"
+  },
+  "1782890973805": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "aaahhahaa"
+      },
+      {
+        "role": "assistant",
+        "content": "Haha, I'm glad to hear that! Is there anything I can help you with today?",
+        "sources": []
+      }
+    ],
+    "title": "aaahhahaa",
+    "timestamp": "2026-07-01T12:29:41.466283"
+  },
+  "1782891939690": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "what is inception ?"
+      },
+      {
+        "role": "assistant",
+        "content": "Inception is a highly acclaimed science fiction action film directed by Christopher Nolan. It's known for its complex plot about a team of thieves who enter people's dreams to steal or plant ideas.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "inception in python  "
+      },
+      {
+        "role": "assistant",
+        "content": "That's an interesting question! While the movie 'Inception' isn't a Python concept itself, the idea of nested layers, similar to dreams within dreams, is often represented in programming using **recursion**, where a function calls itself.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "by the way what is python ?"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ ⚠️ API slow/quota khatam. 5 minute baad try karein.",
+        "sources": []
+      }
+    ],
+    "title": "hi",
+    "timestamp": "2026-07-01T12:47:14.923230"
+  },
+  "1782895518826": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "where is my order ?"
+      },
+      {
+        "role": "assistant",
+        "content": "📦 **Order ORD-7634** (Sony Headphones) is **Delivered**. Total: $1294.67",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "how many my orders ?"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ ⚠️ API slow/quota khatam. 5 minute baad try karein.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "\nhow many my orders ?"
+      },
+      {
+        "role": "assistant",
+        "content": "I apologize, but I'm still experiencing a temporary technical issue that prevents me from accessing your order history at the moment. Please try again in about 5 minutes, and I'll be happy to help you then. Thank you for your patience!",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "how many my orders ?\n\n"
+      },
+      {
+        "role": "assistant",
+        "content": "You have placed **1** order(s) in total.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "how i can order for more thins ?"
+      },
+      {
+        "role": "assistant",
+        "content": "You can easily place more orders by visiting our website or using our mobile app!",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "what is your policy?"
+      },
+      {
+        "role": "assistant",
+        "content": "Our FAILED DELIVERY POLICY states that if delivery fails twice, your order returns to our warehouse. We will contact you within 2 business days to reschedule, and a re-delivery charge of Rs. 100 will apply.",
+        "sources": [
+          {
+            "text": "WHAT TO DO IF YOUR ORDER IS LATE:\n- Check your tracking number via SMS or email confirmation\n- Allow 1 extra business day before contacting support\n- Contact us at support@fastdelivery.pk or call 0800-FAST\n- Provide your order number for fastest resolution\nTRACKING YOUR ORDER\nYou will receive an SMS with a tracking link within 24 hours of dispatch.\nTrack live at: www.fastdelivery.pk/track\nCourier partners: TCS, Leopards, M&P, Trax\nFAILED DELIVERY POLICY\nIf delivery fails twice, your order returns to our warehouse.\nWe will contact you within 2 business days to reschedule.\nRe-delivery charge: Rs. 100\nDAMAGED OR WRONG ITEM RECEIVED\nReport within 24 hours of delivery with photo evidence.\nEmail: complaints@fastdelivery.pk\nReplacement dispatched within 2-3 business days.",
+            "metadata": {
+              "source": "documents\\shipping_policy.pdf",
+              "page": 0,
+              "chunk_id": 338
+            },
+            "display_name": "📄 documents\\shipping_policy.pdf",
+            "source_type": "pdf",
+            "score": 0.6325973272323608
+          },
+          {
+            "text": "Policy, available at apple.com/privacy (or any successor thereto).\n \n \nYou further acknowledge and agree that You shall make no attempt to reidentify an individual using any \ndata provided to You by Apple, including but not limited to reporting related to end users, without express \nwritten consent from Apple or where required by Law. Notwithstanding the foregoing, Personal Data \nassociated with Your use of the Apple Business Services, including name, email address, and phone",
+            "metadata": {
+              "source": "documents\\apple terms and conditions.pdf",
+              "page": 9,
+              "chunk_id": 69
+            },
+            "display_name": "📄 documents\\apple terms and conditions.pdf",
+            "source_type": "pdf",
+            "score": 0.6303054690361023
+          },
+          {
+            "text": "Subject to the Additional Terms for Managed Services, You acknowledge and agree that Apple may retain \nthe Organization Information, account information for accounts associated with the Organization, and \ninformation about Your (and each Representative’s) use of the Apple Business Services, including as may \nbe required by the Law of the jurisdiction(s) in which You reside or are located, or to which You are subject, \nor otherwise in accordance with Apple’s Privacy Policy, available at \nhttps://www.apple.com/legal/privacy/en-ww/ (or any successor thereto), and that such retention may persist \nbeyond Your cessation of use of the Apple Business Services. “ Law” means any (1) statute, decree, \nconstitution, regulation, order, or any directive of any Government Entity, (2) treaty, pact, compact, or other \nagreement to which any Government Entity is a signatory party, (3) judicial or administrative interpretation",
+            "metadata": {
+              "source": "documents\\apple terms and conditions.pdf",
+              "page": 2,
+              "chunk_id": 28
+            },
+            "display_name": "📄 documents\\apple terms and conditions.pdf",
+            "source_type": "pdf",
+            "score": 0.6288331747055054
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "what i your return policy \nwhat is your shipment policy \nwhat is your carriage policy \nwhat is your delivery charges ?"
+      },
+      {
+        "role": "assistant",
+        "content": "📦 **Order ORD-9974** (iPhone 15 Pro) is **In Transit**. Total: $1517.59",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "how many my orders ?\n\n"
+      },
+      {
+        "role": "assistant",
+        "content": "You have placed **2** order(s) in total.",
+        "sources": []
+      }
+    ],
+    "title": "where is my order ?",
+    "timestamp": "2026-07-01T13:55:02.420889"
+  },
+  "1782896907552": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "how many products your company have ?"
+      },
+      {
+        "role": "assistant",
+        "content": "You have placed **2** orders. Active: 0 | Delivered: 2 | Cancelled: 0",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "now ?"
+      },
+      {
+        "role": "assistant",
+        "content": "Our company currently offers over 500 unique products.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "my status ?"
+      },
+      {
+        "role": "assistant",
+        "content": "📦 **Order ORD-4759** (iPhone 15 Pro) is **Processing**. Total: $620.39",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "total"
+      },
+      {
+        "role": "assistant",
+        "content": "The total for Order ORD-4759 is $620.39.",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "what is my overall status ?"
+      },
+      {
+        "role": "assistant",
+        "content": "📜 **Your Order History:**\n• `ORD-7634` | Sony Headphones | Delivered | 2026-06-25 | $1294.67\n• `ORD-9974` | iPhone 15 Pro | Delivered | 2026-06-23 | $1517.59\n• `ORD-5879` | iPhone 15 Pro | Cancelled | 2026-07-01 14:10 | $999.00\n• `ORD-2680` | Nike Air Max | Delivered | 2026-07-01 14:10 | $150.00\n• `ORD-4759` | iPhone 15 Pro | Shipped | 2026-07-01 14:12 | $620.39",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "ok"
+      },
+      {
+        "role": "assistant",
+        "content": "Is there anything else I can assist you with today regarding your orders or anything else?",
+        "sources": []
+      }
+    ],
+    "title": "how many products your company have ?",
+    "timestamp": "2026-07-01T14:13:03.065325"
+  },
+  "1782897564029": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "track my order "
+      },
+      {
+        "role": "assistant",
+        "content": "📋 I can see your order history, but I don't have permission to generate or track specific orders. You can track your orders by logging into your account on our website. I can tell you how many orders you've placed or list them for you!",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "list my orders "
+      },
+      {
+        "role": "assistant",
+        "content": "📜 **Your Order History:**\n• `ORD-7634` | Sony Headphones | Delivered | 2026-06-25 | $1294.67\n• `ORD-9974` | iPhone 15 Pro | Delivered | 2026-06-23 | $1517.59\n• `ORD-5879` | iPhone 15 Pro | Cancelled | 2026-07-01 14:10 | $999.00\n• `ORD-2680` | Nike Air Max | Delivered | 2026-07-01 14:10 | $150.00\n• `ORD-4759` | iPhone 15 Pro | Delivered | 2026-07-01 14:12 | $620.39",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "cancel ord-1234"
+      },
+      {
+        "role": "assistant",
+        "content": "🛑 I'm sorry, but I don't have permission to cancel orders directly. You can cancel your order by visiting your account on our website or contacting our support team. I can help you with order status or other information though!",
+        "sources": []
+      },
+      {
+        "role": "user",
+        "content": "place an order "
+      },
+      {
+        "role": "assistant",
+        "content": "To place an order, you need to browse our website, add items to your cart, proceed to checkout, enter your delivery address and payment details, and then confirm your order. You will receive an email and SMS confirmation immediately after.",
+        "sources": [
+          {
+            "text": "photograph. All such information is stored or used for processing  orders and under no \ncircumstance are any of these details made available in the public domain. We may use this \ninformation to send you further information regarding our services.",
+            "metadata": {
+              "source": "documents\\Amazon privacy policy.pdf",
+              "page": 0,
+              "chunk_id": 3
+            },
+            "display_name": "📄 documents\\Amazon privacy policy.pdf",
+            "source_type": "pdf",
+            "score": 0.6564833521842957
+          },
+          {
+            "text": "FAST DELIVERY CO. — FREQUENTLY ASKED QUESTIONS\nQ: How do I place an order?\nA: Browse our website, add items to cart, proceed to checkout, enter your delivery address and\npayment details, and confirm your order. You will receive an email and SMS confirmation immediately.\nQ: What payment methods do you accept?\nA: We accept JazzCash, EasyPaisa, credit/debit cards (Visa/Mastercard), bank transfer, and Cash on\nDelivery (COD) for orders up to Rs. 10,000.\nQ: Is Cash on Delivery available?\nA: Yes, COD is available for orders up to Rs. 10,000 across Pakistan. COD orders may take 1 extra\nbusiness day to process.\nQ: My payment failed but amount was deducted. What do I do?\nA: This is a temporary hold by your bank. The amount is automatically reversed within 3-5 business\ndays. If not reversed, contact your bank with the transaction reference number.\nQ: Can I change my delivery address after ordering?\nA: Address changes are possible within 2 hours of ordering. Contact us immediately at 0800-FAST.",
+            "metadata": {
+              "source": "documents\\faqs.pdf",
+              "page": 0,
+              "chunk_id": 191
+            },
+            "display_name": "📄 documents\\faqs.pdf",
+            "source_type": "pdf",
+            "score": 0.6372270584106445
+          },
+          {
+            "text": "WHAT TO DO IF YOUR ORDER IS LATE:\n- Check your tracking number via SMS or email confirmation\n- Allow 1 extra business day before contacting support\n- Contact us at support@fastdelivery.pk or call 0800-FAST\n- Provide your order number for fastest resolution\nTRACKING YOUR ORDER\nYou will receive an SMS with a tracking link within 24 hours of dispatch.\nTrack live at: www.fastdelivery.pk/track\nCourier partners: TCS, Leopards, M&P, Trax\nFAILED DELIVERY POLICY\nIf delivery fails twice, your order returns to our warehouse.\nWe will contact you within 2 business days to reschedule.\nRe-delivery charge: Rs. 100\nDAMAGED OR WRONG ITEM RECEIVED\nReport within 24 hours of delivery with photo evidence.\nEmail: complaints@fastdelivery.pk\nReplacement dispatched within 2-3 business days.",
+            "metadata": {
+              "source": "documents\\shipping_policy.pdf",
+              "page": 0,
+              "chunk_id": 338
+            },
+            "display_name": "📄 documents\\shipping_policy.pdf",
+            "source_type": "pdf",
+            "score": 0.6065914630889893
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "total spent "
+      },
+      {
+        "role": "assistant",
+        "content": "💰 Your total spent across all delivered orders is **$3582.65**.",
+        "sources": []
+      }
+    ],
+    "title": "track my order ",
+    "timestamp": "2026-07-01T14:20:54.206018"
+  },
+  "1782904273380": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I help you today?",
+        "sources": []
+      }
+    ],
+    "title": "hi",
+    "timestamp": "2026-07-01T16:11:17.895920"
+  }
+}

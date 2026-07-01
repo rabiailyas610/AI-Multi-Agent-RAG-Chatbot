@@ -1,0 +1,97 @@
+[
+  {
+    "id": "ORD-7634",
+    "product": "Sony Headphones",
+    "status": "Delivered",
+    "date": "2026-06-25",
+    "total": 1294.67
+  },
+  {
+    "id": "ORD-9974",
+    "product": "iPhone 15 Pro",
+    "status": "Delivered",
+    "date": "2026-06-23",
+    "total": 1517.59,
+    "created_at": "2026-07-01T14:06:20.386796"
+  },
+  {
+    "id": "ORD-5879",
+    "product": "iPhone 15 Pro",
+    "status": "Cancelled",
+    "date": "2026-07-01 14:10",
+    "total": 999.0,
+    "created_at": "2026-07-01T14:10:38.568883"
+  },
+  {
+    "id": "ORD-2680",
+    "product": "Nike Air Max",
+    "status": "Delivered",
+    "date": "2026-07-01 14:10",
+    "total": 150.0,
+    "created_at": "2026-07-01T14:10:47.404820"
+  },
+  {
+    "id": "ORD-4759",
+    "product": "iPhone 15 Pro",
+    "status": "Delivered",
+    "date": "2026-07-01 14:12",
+    "total": 620.39,
+    "created_at": "2026-07-01T14:12:06.950609"
+  },
+  {
+    "id": "ORD-6367",
+    "product": "iPhone 15 Pro",
+    "status": "Cancelled",
+    "date": "2026-07-01 14:29",
+    "total": 99.99,
+    "created_at": "2026-07-01T14:29:49.865794"
+  },
+  {
+    "id": "ORD-7054",
+    "product": "Gaming Chair",
+    "status": "Cancelled",
+    "date": "2026-07-01 14:36",
+    "total": 249.0,
+    "created_at": "2026-07-01T14:36:47.629666"
+  },
+  {
+    "id": "ORD-6199",
+    "product": "Robot Vacuum",
+    "status": "Cancelled",
+    "date": "2026-07-01 14:36",
+    "total": 399.99,
+    "created_at": "2026-07-01T14:36:47.631364"
+  },
+  {
+    "id": "ORD-6578",
+    "product": "Coffee Maker",
+    "status": "Cancelled",
+    "date": "2026-07-01 14:36",
+    "total": 89.99,
+    "created_at": "2026-07-01T14:36:47.632458"
+  },
+  {
+    "id": "ORD-6522",
+    "product": "iPhone 15 Pro",
+    "status": "Cancelled",
+    "date": "2026-07-01 15:35",
+    "total": 99.87,
+    "created_at": "2026-07-01T15:35:36.169372"
+  },
+  {
+    "id": "ORD-2945",
+    "product": "iPhone 15 Pro",
+    "status": "Cancelled",
+    "date": "2026-07-01 17:01",
+    "total": 999.0,
+    "created_at": "2026-07-01T17:01:22.608354"
+  },
+  {
+    "id": "ORD-9206",
+    "product": "Gaming Chair",
+    "status": "Delivered",
+    "date": "2026-07-01 17:01",
+    "total": 249.0,
+    "created_at": "2026-07-01T17:01:46.169661"
+  }
+]
