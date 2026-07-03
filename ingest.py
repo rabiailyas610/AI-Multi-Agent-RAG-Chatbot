@@ -141,7 +141,6 @@ def main():
         os.remove(CHECKPOINT_FILE)
 
     print(f"Done! Indexed {index.ntotal} vectors.")
-    print("Ab aap 'streamlit run app.py' chala sakti hain.")
 
 if __name__ == "__main__":
     main()

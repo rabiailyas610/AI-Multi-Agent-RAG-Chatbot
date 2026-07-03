@@ -7,7 +7,7 @@ from config import TOP_K
 from utils import load_resources, load_all_chats, save_all_chats, save_current_chat
 from agents import run_agents, OrderManager
 
-st.set_page_config(page_title="AI Support Agent", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="AI Multi-Agent RAG Chatbot", page_icon="🤖", layout="wide")
 
 # ============================================================
 # SESSION STATE INIT
