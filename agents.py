@@ -220,7 +220,7 @@ Answer:"""
     return answer, results
 
 # ============================================================
-# AGENT 3: ORDER
+# AGENT 3: ORDER (SMART TRACKING - ACTUAL STATUS)
 # ============================================================
 class OrderAgent:
     def __init__(self):
@@ -229,10 +229,12 @@ class OrderAgent:
     def answer(self, query):
         q_lower = query.lower()
         
+        # 1. Total spent
         if q_lower == "total" or "total spent" in q_lower:
             stats = self.manager.get_stats()
             return f"💰 Your total spent across all delivered orders is **${stats['total_spent']:.2f}**.", []
         
+        # 2. Cancel order
         if "cancel" in q_lower and "ord-" in q_lower:
             return (
                 "🛑 I'm sorry, but I don't have permission to cancel orders directly. "
@@ -240,6 +242,7 @@ class OrderAgent:
                 []
             )
         
+        # 3. Place order
         if "place" in q_lower or "add" in q_lower:
             return (
                 "🛑 I'm just an assistant and don't have permission to place orders. "
@@ -247,11 +250,13 @@ class OrderAgent:
                 []
             )
         
+        # 4. How many orders
         if "how many" in q_lower or "count" in q_lower:
             stats = self.manager.get_stats()
             total_orders = stats['active'] + stats['completed']
             return f"You have placed **{total_orders}** orders. Active: {stats['active']} | Delivered: {stats['completed']} | Cancelled: {stats['cancelled']}", []
         
+        # 5. List all orders
         if "list" in q_lower or "all" in q_lower or "history" in q_lower:
             if not self.manager.orders:
                 return "No orders found.", []
@@ -260,18 +265,56 @@ class OrderAgent:
                 lines.append(f"• `{o['id']}` | {o['product']} | {o['status']} | {o['date']} | ${o['total']:.2f}")
             return "\n".join(lines), []
         
-        if any(kw in q_lower for kw in ["track", "tracking", "status", "where is", "delivery", "shipped"]):
-            return (
-                "📋 I can see your order history. For live tracking, please log in to your account on our website.",
-                []
-            )
+        # 🔥 6. TRACK ORDER (NEW SMART LOGIC - REAL STATUS)
+        if any(kw in q_lower for kw in ["track", "tracking", "status", "where is", "delivery", "shipped", "received"]):
+            
+            # Agar user ne specific order ID di hai (jaise "track ORD-123")
+            match = re.search(r'(ORD-\d+)', query)
+            if match:
+                order_id = match.group(1)
+                for o in self.manager.orders:
+                    if o['id'] == order_id:
+                        status = o['status']
+                        product = o['product']
+                        if status == "Processing":
+                            return f"📦 Order {order_id} for '{product}' is currently **Processing**. It will be shipped soon.", []
+                        elif status == "Shipped":
+                            return f"🚚 Order {order_id} for '{product}' has been **Shipped**! It's on its way.", []
+                        elif status == "In Transit":
+                            return f"🚛 Order {order_id} for '{product}' is **In Transit**. Almost there!", []
+                        elif status == "Delivered":
+                            return f"✅ Order {order_id} for '{product}' has been **Delivered**! Thank you for shopping with us.", []
+                        else:
+                            return f"Order {order_id} is currently {status}.", []
+                return f"Order {order_id} not found. Please check the ID.", []
+            
+            # Agar user ne koi specific ID nahi di, toh active orders dikhao
+            active_orders = self.manager.get_active_orders()
+            if not active_orders:
+                # Agar active orders nahi hain, toh check karo ke koi delivered order hai ya nahi
+                delivered = self.manager.get_completed_orders()
+                if delivered:
+                    latest = delivered[-1]
+                    return f"✅ You don't have any active orders. Your last order '{latest['product']}' was delivered on {latest['date']}. Thank you!", []
+                else:
+                    return "📭 You don't have any orders yet. Visit the Shop to place your first order!", []
+            
+            # Active orders ka summary
+            lines = ["📦 **Your Active Orders:**"]
+            for o in active_orders:
+                status_emoji = "⏳" if o['status'] == "Processing" else "🚚" if o['status'] == "Shipped" else "🚛"
+                lines.append(f"• {status_emoji} `{o['id']}` | {o['product']} | **{o['status']}**")
+            lines.append("\n💡 To track a specific order, say 'track ORD-XXX'")
+            return "\n".join(lines), []
         
+        # 7. Default
         return (
             "I can help with order info! Ask about:\n"
             "- 'How many orders do I have?'\n"
             "- 'List my orders'\n"
             "- 'Total spent'\n"
-            "- 'Order history'",
+            "- 'Track my order'\n"
+            "- 'Track ORD-123'",
             []
         )
 
