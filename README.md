@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain">
   </p>
   <p>
-    <a href="https://rag-support-agent-jrwz52uvxuljdrmxjknsvm.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Live Demo"></a>
+    <a href="https://ai-multi-agent-rag-chatbot-msjanvxvbtbduatqlrvzkv.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Live Demo"></a>
   </p>
 </div>
 
