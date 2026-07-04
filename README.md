@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🤖 AI Support Agent</h1>
+  <h1>🤖AI-Multi-Agent-RAG-Chatbot</h1>
   <p><strong>Multi-Agent RAG Chatbot with FAISS + Google Gemini</strong></p>
   <p>
     <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit">
