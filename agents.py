@@ -1,14 +1,20 @@
-# agents.py
 import random
 import datetime
 import numpy as np
 import streamlit as st
 import time
 import re
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from utils import load_orders, save_orders, generate_order_id
 from config import TOP_K
 
-# --- HELPER: Recent History ---
+# ============================================================
+# HELPER: Recent History
+# ============================================================
 def get_recent_history(st_session_state, max_turns=3):
     history = st_session_state.messages[-(max_turns * 2):]
     lines = []
@@ -17,7 +23,9 @@ def get_recent_history(st_session_state, max_turns=3):
         lines.append(f"{role}: {msg['content']}")
     return "\n".join(lines)
 
-# --- HELPER: FAISS Search ---
+# ============================================================
+# HELPER: FAISS Search
+# ============================================================
 def search(query, embeddings, texts, metadatas, index, k=TOP_K):
     q_emb = np.array(embeddings.embed_query(query), dtype="float32")
     q_emb = q_emb / np.linalg.norm(q_emb)
@@ -28,12 +36,12 @@ def search(query, embeddings, texts, metadatas, index, k=TOP_K):
         if idx == -1:
             continue
         src = metadatas[idx].get('source', 'Unknown')
-        if "scraped" in src or ".txt" in src:
-            display_name = "🌐 " + src.replace("scraped_", "").replace(".md", "").replace(".txt", "")
-            source_type = "web"
-        else:
+        if ".pdf" in src:
             display_name = "📄 " + src
             source_type = "pdf"
+        else:
+            display_name = "🌐 " + src.replace("scraped_", "").replace(".md", "").replace(".txt", "")
+            source_type = "web"
         results.append({
             "text": texts[idx],
             "metadata": metadatas[idx],
@@ -43,7 +51,9 @@ def search(query, embeddings, texts, metadatas, index, k=TOP_K):
         })
     return results
 
-# --- HELPER: LLM Call with Retry ---
+# ============================================================
+# HELPER: LLM Call with Retry
+# ============================================================
 def call_llm_with_retry(llm, prompt, max_retries=2):
     for attempt in range(1, max_retries + 1):
         try:
@@ -57,7 +67,7 @@ def call_llm_with_retry(llm, prompt, max_retries=2):
                 time.sleep(3)
 
 # ============================================================
-# 🔥 ORDER MANAGER (Status changes every 60 seconds)
+# 🔥 ORDER MANAGER
 # ============================================================
 class OrderManager:
     def __init__(self):
@@ -168,11 +178,14 @@ def classifier_agent(question):
     
     return "general"
 
-# --- AGENT 2: Document ---
+# ============================================================
+# AGENT 2: DOCUMENT (SMART PROMPT)
+# ============================================================
 def document_agent(question, embeddings, texts, metadatas, index, llm, st_session_state):
     results = search(question, embeddings, texts, metadatas, index)
+    
     if not results:
-        return "I don't have that information in my documents. Is there something else I can help you with?", []
+        return "I don't have that information in my documents. Please contact our support team.", []
     
     for r in results:
         st_session_state.source_usage.append({
@@ -184,15 +197,17 @@ def document_agent(question, embeddings, texts, metadatas, index, llm, st_sessio
     context = "\n\n---\n\n".join([f"Text: {r['text']}" for r in results])
     history = get_recent_history(st_session_state)
     
-    prompt = f"""You are a customer support assistant. Answer based ONLY on the context.
+    # 🔥 SMART PROMPT - Connects related information
+    prompt = f"""You are a customer support assistant. Answer the user's question based **ONLY** on the provided context below.
 
 Recent conversation:
 {history}
 
-STRICT RULES:
-1. ONLY use the context.
-2. If context has answer, summarize clearly.
-3. If not, say: "I don't have that information in my documents."
+INSTRUCTIONS:
+1. Read the context carefully.
+2. If the context contains **any information related to the user's question** (for example, if the user asks about "privacy" and the context talks about "data collection", "cookies", "ads", or "usage of information"), use that information to form a clear, concise, and helpful answer.
+3. **DO NOT** just look for the exact wording "Privacy Policy". Connect the dots and summarize what the context says about the user's topic.
+4. If the context is **completely unrelated** to the question, only then say: "I don't have that information in my documents. Please contact our support team."
 
 Context:
 {context}
@@ -205,7 +220,7 @@ Answer:"""
     return answer, results
 
 # ============================================================
-# 🔥 AGENT 3: Order (PURELY INFORMATIONAL)
+# AGENT 3: ORDER
 # ============================================================
 class OrderAgent:
     def __init__(self):
@@ -221,28 +236,25 @@ class OrderAgent:
         if "cancel" in q_lower and "ord-" in q_lower:
             return (
                 "🛑 I'm sorry, but I don't have permission to cancel orders directly. "
-                "You can cancel your order by visiting your account on our website or contacting our support team. "
-                "I can help you with order status or other information though!",
+                "You can cancel your order by visiting your account on our website.",
                 []
             )
         
         if "place" in q_lower or "add" in q_lower:
             return (
                 "🛑 I'm just an assistant and don't have permission to place orders. "
-                "You can place an order directly on our website or mobile app. "
-                "I'm here to help with any questions you have!",
+                "You can place an order directly on our website or mobile app.",
                 []
             )
         
         if "how many" in q_lower or "count" in q_lower:
             stats = self.manager.get_stats()
-            # 🔥 FIX: Total orders = Active + Completed (excluding Cancelled)
             total_orders = stats['active'] + stats['completed']
             return f"You have placed **{total_orders}** orders. Active: {stats['active']} | Delivered: {stats['completed']} | Cancelled: {stats['cancelled']}", []
         
         if "list" in q_lower or "all" in q_lower or "history" in q_lower:
             if not self.manager.orders:
-                return "No orders found. Visit the Dashboard or website to place orders!", []
+                return "No orders found.", []
             lines = ["📜 **Your Order History:**"]
             for o in self.manager.orders[-5:]:
                 lines.append(f"• `{o['id']}` | {o['product']} | {o['status']} | {o['date']} | ${o['total']:.2f}")
@@ -250,23 +262,22 @@ class OrderAgent:
         
         if any(kw in q_lower for kw in ["track", "tracking", "status", "where is", "delivery", "shipped"]):
             return (
-                "📋 I can see your order history, but I don't have permission to generate or track specific orders. "
-                "You can track your orders by logging into your account on our website. "
-                "I can tell you how many orders you've placed or list them for you!",
+                "📋 I can see your order history. For live tracking, please log in to your account on our website.",
                 []
             )
         
         return (
-            "I can help you with order information! You can ask about:\n"
+            "I can help with order info! Ask about:\n"
             "- 'How many orders do I have?'\n"
             "- 'List my orders'\n"
             "- 'Total spent'\n"
-            "- 'Order history'\n\n"
-            "For placing or canceling orders, please use the Dashboard or our website.",
+            "- 'Order history'",
             []
         )
 
-# --- AGENT 4: General ---
+# ============================================================
+# AGENT 4: GENERAL
+# ============================================================
 def general_agent(question, llm, st_session_state):
     history = get_recent_history(st_session_state)
     prompt = f"""You are a professional customer support assistant.
@@ -274,20 +285,25 @@ def general_agent(question, llm, st_session_state):
 Recent conversation:
 {history}
 
-Answer warmly and professionally. One direct answer.
+Answer warmly and professionally.
 
 Question: {question}
 
 Answer:"""
     return call_llm_with_retry(llm, prompt), []
 
-# --- MAIN ROUTER ---
+# ============================================================
+# 🔥 MAIN ROUTER
+# ============================================================
 def run_agents(question, embeddings, texts, metadatas, index, llm, st_session_state):
     route = classifier_agent(question)
+    
     if route == "order":
         agent = OrderAgent()
         return "order", *agent.answer(question)
+    
     elif route == "document":
         return "document", *document_agent(question, embeddings, texts, metadatas, index, llm, st_session_state)
+    
     else:
         return "general", *general_agent(question, llm, st_session_state)

@@ -1,7 +1,74 @@
 import os
+import subprocess
+import streamlit as st
 import time
 import datetime
-import streamlit as st
+import sys
+
+# ============================================================
+# 🔥 AUTO-BUILD INDEX ON CLOUD (Fix for Windows/Linux binary)
+# ============================================================
+INDEX_FILE = "faiss_index.bin"
+META_FILE = "faiss_meta.pkl"
+
+# Check if index exists AND is loadable
+index_exists = os.path.exists(INDEX_FILE) and os.path.exists(META_FILE)
+
+if index_exists:
+    try:
+        import faiss
+        import pickle
+        # Try to load to verify compatibility
+        faiss.read_index(INDEX_FILE)
+        with open(META_FILE, "rb") as f:
+            pickle.load(f)
+        print("✅ Index loaded successfully!")
+    except Exception as e:
+        print(f"⚠️ Index file exists but failed to load ({e}). Rebuilding...")
+        index_exists = False
+
+if not index_exists:
+    # Show user message
+    st.warning("⚠️ Building FAISS index on cloud. This will take 2-3 minutes (one-time only). Please wait...")
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    try:
+        # Run ingest.py with progress tracking
+        status_text.text("📚 Loading documents...")
+        progress_bar.progress(10)
+        
+        # Run the ingest script
+        result = subprocess.run(
+            [sys.executable, "ingest.py"], 
+            capture_output=True, 
+            text=True, 
+            timeout=300
+        )
+        
+        progress_bar.progress(100)
+        status_text.text("✅ Index built successfully!")
+        
+        # Check if build was successful
+        if os.path.exists(INDEX_FILE) and os.path.exists(META_FILE):
+            st.success("✅ Index built successfully! Refreshing...")
+            time.sleep(2)
+            st.rerun()
+        else:
+            st.error("❌ Index build failed. Please check logs.")
+            st.code(result.stdout + "\n" + result.stderr)
+            st.stop()
+            
+    except subprocess.TimeoutExpired:
+        st.error("❌ Index build timed out (5 minutes). Please try again.")
+        st.stop()
+    except Exception as e:
+        st.error(f"❌ Failed to build index: {e}")
+        st.stop()
+
+# ============================================================
+# MAIN APP - Continue with normal flow
+# ============================================================
 
 from config import TOP_K
 from utils import load_resources, load_all_chats, save_all_chats, save_current_chat
@@ -138,9 +205,9 @@ try:
     texts = meta["texts"]
     metadatas = meta["metadatas"]
     SYSTEM_READY = True
-except:
+except Exception as e:
     SYSTEM_READY = False
-    st.warning("⚠️ Index not found. Run `python ingest.py` first.")
+    st.warning(f"⚠️ Index not found or failed to load. Error: {e}")
 
 # ============================================================
 # CHAT HELPERS
@@ -287,7 +354,7 @@ with st.sidebar:
     if SYSTEM_READY:
         st.caption(f"🟢 Online · 📚 {len(texts)} chunks")
     else:
-        st.caption("🔴 Offline")
+        st.caption("🔴 Offline - Index building...")
     st.markdown("---")
     chats = load_all_chats_local()
     if chats:
