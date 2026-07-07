@@ -1,80 +1,13 @@
 import os
-import subprocess
-import streamlit as st
 import time
 import datetime
-import sys
-
-# ============================================================
-# 🔥 AUTO-BUILD INDEX ON CLOUD (Fix for Windows/Linux binary)
-# ============================================================
-INDEX_FILE = "faiss_index.bin"
-META_FILE = "faiss_meta.pkl"
-
-# Check if index exists AND is loadable
-index_exists = os.path.exists(INDEX_FILE) and os.path.exists(META_FILE)
-
-if index_exists:
-    try:
-        import faiss
-        import pickle
-        # Try to load to verify compatibility
-        faiss.read_index(INDEX_FILE)
-        with open(META_FILE, "rb") as f:
-            pickle.load(f)
-        print("✅ Index loaded successfully!")
-    except Exception as e:
-        print(f"⚠️ Index file exists but failed to load ({e}). Rebuilding...")
-        index_exists = False
-
-if not index_exists:
-    # Show user message
-    st.warning("⚠️ Building FAISS index on cloud. This will take 2-3 minutes (one-time only). Please wait...")
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    
-    try:
-        # Run ingest.py with progress tracking
-        status_text.text("📚 Loading documents...")
-        progress_bar.progress(10)
-        
-        # Run the ingest script
-        result = subprocess.run(
-            [sys.executable, "ingest.py"], 
-            capture_output=True, 
-            text=True, 
-            timeout=300
-        )
-        
-        progress_bar.progress(100)
-        status_text.text("✅ Index built successfully!")
-        
-        # Check if build was successful
-        if os.path.exists(INDEX_FILE) and os.path.exists(META_FILE):
-            st.success("✅ Index built successfully! Refreshing...")
-            time.sleep(2)
-            st.rerun()
-        else:
-            st.error("❌ Index build failed. Please check logs.")
-            st.code(result.stdout + "\n" + result.stderr)
-            st.stop()
-            
-    except subprocess.TimeoutExpired:
-        st.error("❌ Index build timed out (5 minutes). Please try again.")
-        st.stop()
-    except Exception as e:
-        st.error(f"❌ Failed to build index: {e}")
-        st.stop()
-
-# ============================================================
-# MAIN APP - Continue with normal flow
-# ============================================================
+import streamlit as st
 
 from config import TOP_K
 from utils import load_resources, load_all_chats, save_all_chats, save_current_chat
 from agents import run_agents, OrderManager
 
-st.set_page_config(page_title="AI Multi-Agent RAG Chatbot", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="AI Support Agent", page_icon="🤖", layout="wide")
 
 # ============================================================
 # SESSION STATE INIT
@@ -103,7 +36,7 @@ if "active_tab" not in st.session_state:
     st.session_state.active_tab = 0
 
 # ============================================================
-# CSS
+# CSS — STICKY TABS + ULTRA COMPACT ORDERS
 # ============================================================
 st.markdown("""
 <style>
@@ -131,6 +64,7 @@ st.markdown("""
         padding: 6px 0 !important;
         margin: 0 !important;
         border-bottom: 2px solid #e2e8f0 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
         gap: 2px !important;
         flex-wrap: nowrap !important;
     }
@@ -194,6 +128,23 @@ st.markdown("""
         align-items: center;
         min-height: 28px;
     }
+    
+    /* 🔥 CHHOTA NEW CHAT BUTTON */
+    .new-chat-small button {
+        padding: 2px 8px !important;
+        font-size: 12px !important;
+        background-color: #3b82f6 !important;
+        color: white !important;
+        border-radius: 4px !important;
+        border: none !important;
+        min-height: 28px !important;
+        line-height: 1.2 !important;
+        width: 100% !important;
+        margin-top: 2px !important;
+    }
+    .new-chat-small button:hover {
+        background-color: #2563eb !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -205,9 +156,9 @@ try:
     texts = meta["texts"]
     metadatas = meta["metadatas"]
     SYSTEM_READY = True
-except Exception as e:
+except:
     SYSTEM_READY = False
-    st.warning(f"⚠️ Index not found or failed to load. Error: {e}")
+    st.warning("⚠️ Index not found. Run `python ingest.py` first.")
 
 # ============================================================
 # CHAT HELPERS
@@ -354,7 +305,7 @@ with st.sidebar:
     if SYSTEM_READY:
         st.caption(f"🟢 Online · 📚 {len(texts)} chunks")
     else:
-        st.caption("🔴 Offline - Index building...")
+        st.caption("🔴 Offline")
     st.markdown("---")
     chats = load_all_chats_local()
     if chats:
@@ -380,8 +331,39 @@ with st.sidebar:
 # VIEW FUNCTIONS
 # ============================================================
 def render_chat():
-    st.title("💬 Chat")
-    st.caption("Ask about documents, orders, or general knowledge.")
+    # 🔥 Purana Layout (Normal Flow) + Chhota New Chat Button
+    # Custom CSS for compact button
+    st.markdown("""
+    <style>
+        .new-chat-small button {
+            padding: 2px 8px !important;
+            font-size: 12px !important;
+            background-color: #3b82f6 !important;
+            color: white !important;
+            border-radius: 4px !important;
+            border: none !important;
+            min-height: 28px !important;
+            line-height: 1.2 !important;
+            width: 100% !important;
+            margin-top: 2px !important;
+        }
+        .new-chat-small button:hover {
+            background-color: #2563eb !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    col_title, col_btn = st.columns([0.88, 0.12])
+    with col_title:
+        st.title("💬 Chat")
+        st.caption("Ask about documents, orders, or general knowledge.")
+    with col_btn:
+        st.markdown('<div class="new-chat-small">', unsafe_allow_html=True)
+        if st.button("➕ New", use_container_width=True, key="new_chat_main"):
+            new_chat()
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Chat messages
     for msg in st.session_state.messages:
         if msg["role"] == "user":
             with st.chat_message("user", avatar="👤"):
@@ -518,6 +500,7 @@ def render_dashboard():
     else:
         st.info("🛒 Cart is empty. Browse the Shop!")
     st.markdown("---")
+    st.markdown("---")
     if st.session_state.selected_order:
         render_order_detail(st.session_state.selected_order)
         return
@@ -595,7 +578,7 @@ def render_shop():
     st.info("💡 Orders: Processing → (1 min) → Shipped → (1 min) → Delivered.")
 
 # ============================================================
-# MAIN LAYOUT
+# MAIN LAYOUT — STICKY TABS WITH QUERY PARAM
 # ============================================================
 tab_param = st.query_params.get("tab", "Chat")
 if tab_param == "Shop":

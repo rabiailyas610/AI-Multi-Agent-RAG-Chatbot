@@ -1,242 +1,126 @@
 {
-  "1782890950250": {
+  "1783350728582": {
     "messages": [
       {
         "role": "user",
-        "content": "hi"
+        "content": "What is your return policy?"
       },
       {
         "role": "assistant",
-        "content": "Hello! How can I assist you today?",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "/how are you"
-      },
-      {
-        "role": "assistant",
-        "content": "I'm doing well, thank you for asking! How can I assist you further today?",
-        "sources": []
-      }
-    ],
-    "title": "hi",
-    "timestamp": "2026-07-01T12:29:33.802937"
-  },
-  "1782890973805": {
-    "messages": [
-      {
-        "role": "user",
-        "content": "aaahhahaa"
-      },
-      {
-        "role": "assistant",
-        "content": "Haha, I'm glad to hear that! Is there anything I can help you with today?",
-        "sources": []
-      }
-    ],
-    "title": "aaahhahaa",
-    "timestamp": "2026-07-01T12:29:41.466283"
-  },
-  "1782891939690": {
-    "messages": [
-      {
-        "role": "user",
-        "content": "hi"
-      },
-      {
-        "role": "assistant",
-        "content": "Hello! How can I assist you today?",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "what is inception ?"
-      },
-      {
-        "role": "assistant",
-        "content": "Inception is a highly acclaimed science fiction action film directed by Christopher Nolan. It's known for its complex plot about a team of thieves who enter people's dreams to steal or plant ideas.",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "inception in python  "
-      },
-      {
-        "role": "assistant",
-        "content": "That's an interesting question! While the movie 'Inception' isn't a Python concept itself, the idea of nested layers, similar to dreams within dreams, is often represented in programming using **recursion**, where a function calls itself.",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "by the way what is python ?"
-      },
-      {
-        "role": "assistant",
-        "content": "⚠️ ⚠️ API slow/quota khatam. 5 minute baad try karein.",
-        "sources": []
-      }
-    ],
-    "title": "hi",
-    "timestamp": "2026-07-01T12:47:14.923230"
-  },
-  "1782895518826": {
-    "messages": [
-      {
-        "role": "user",
-        "content": "where is my order ?"
-      },
-      {
-        "role": "assistant",
-        "content": "📦 **Order ORD-7634** (Sony Headphones) is **Delivered**. Total: $1294.67",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "how many my orders ?"
-      },
-      {
-        "role": "assistant",
-        "content": "⚠️ ⚠️ API slow/quota khatam. 5 minute baad try karein.",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "\nhow many my orders ?"
-      },
-      {
-        "role": "assistant",
-        "content": "I apologize, but I'm still experiencing a temporary technical issue that prevents me from accessing your order history at the moment. Please try again in about 5 minutes, and I'll be happy to help you then. Thank you for your patience!",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "how many my orders ?\n\n"
-      },
-      {
-        "role": "assistant",
-        "content": "You have placed **1** order(s) in total.",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "how i can order for more thins ?"
-      },
-      {
-        "role": "assistant",
-        "content": "You can easily place more orders by visiting our website or using our mobile app!",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "what is your policy?"
-      },
-      {
-        "role": "assistant",
-        "content": "Our FAILED DELIVERY POLICY states that if delivery fails twice, your order returns to our warehouse. We will contact you within 2 business days to reschedule, and a re-delivery charge of Rs. 100 will apply.",
+        "content": "Here is information regarding the return policy:\n\n*   Products must be returned undamaged and in the same condition as when delivered.\n*   You can cancel your order without reason within 14 days from the day you received the goods (or the last good/lot/piece if delivered separately), or from the day of contract conclusion (e.g., digital content).\n*   For excluded products, you can return them within 14 days as provided by law.\n*   If you return an item in accordance with Amazon's return policy within 30 calendar days from the date of delivery (beyond the statutory 14-day period), you will be refunded the purchase price, but not the initial delivery costs (except for clothes, shoes, and bags).\n*   The transport risk and return costs might be borne by you.\n*   Specific policies apply to Fashion items (shoes, clothing, bags, jewelry, and watches).\n*   Regarding return shipping charges:\n    *   If the item is defective or wrong, we cover the return shipping.\n    *   If you return due to a change of mind, the customer pays Rs. 150 for return shipping.\n*   Exchanges are available for size/color variants only, following the same process as returns (mention \"exchange\" in your email). The exchange item is dispatched within 1-2 business days after your return is received.\n\nFurther information can be found on the Return policy page and in the Returns Centre.",
         "sources": [
           {
-            "text": "WHAT TO DO IF YOUR ORDER IS LATE:\n- Check your tracking number via SMS or email confirmation\n- Allow 1 extra business day before contacting support\n- Contact us at support@fastdelivery.pk or call 0800-FAST\n- Provide your order number for fastest resolution\nTRACKING YOUR ORDER\nYou will receive an SMS with a tracking link within 24 hours of dispatch.\nTrack live at: www.fastdelivery.pk/track\nCourier partners: TCS, Leopards, M&P, Trax\nFAILED DELIVERY POLICY\nIf delivery fails twice, your order returns to our warehouse.\nWe will contact you within 2 business days to reschedule.\nRe-delivery charge: Rs. 100\nDAMAGED OR WRONG ITEM RECEIVED\nReport within 24 hours of delivery with photo evidence.\nEmail: complaints@fastdelivery.pk\nReplacement dispatched within 2-3 business days.",
+            "text": "undamaged and in the same condition as when they were delivered to you, except for \nthe excluded products, for which you can decide to return the product by 14 days, as \nprovided by law. In all cases, the applicable exceptions listed above apply. Further \ninformation can be found on our Return policy page. Products must be returned \nfollowing the instructions available in our Returns Centre. \nIf you decide to return the item in accordance with Amazon's return policy within 30 \n(thirty) calendar days from the date of delivery and beyond the statutory 14-day period, \nwe will refund to you the purchase price already paid by you, but not the delivery costs \nof your initial purchase (except in case of return of clothes, shoes and bags). Likewise, the \ntransport risk and return costs might be borne by you. If you return Fashion items (shoes, \nclothing, bags, jewelry and watches) specific policies apply, for more details see our",
             "metadata": {
-              "source": "documents\\shipping_policy.pdf",
+              "source": "documents\\Amazon.itConditionsofUseSale_01_08_2024.pdf",
+              "page": 10,
+              "chunk_id": 57
+            },
+            "display_name": "📄 documents\\Amazon.itConditionsofUseSale_01_08_2024.pdf",
+            "source_type": "pdf",
+            "score": 0.6475646495819092
+          },
+          {
+            "text": "invoicing effective as of 2019. \nPlease note that all orders placed on the website must correspond to the typical needs of \nan average household. This applies both to the number of products ordered within a \nsingle order and the placing of several orders for the same product even where the \nindividual orders comprise a quantity typical for a normal household. \n2. AMAZON RIGHT OF CANCELLATION, EXCEPTIONS AND AMAZON RETURNS POLICIES \nUnless one of the exceptions listed below applies, you can cancel your order without \ngiving any reason within 14 days from the day on which you received the goods \npurchased (or last good, lot or piece if it relates to goods or multiple lots or pieces \ndelivered separately) or from the day of the conclusion of the contract (including, but not \nlimited to, contracts for the supply of digital content not supplied in a tangible medium, \nsuch as CD or DVD). If you have appointed a trusted person for the collection, your right",
+            "metadata": {
+              "source": "documents\\Amazon.itConditionsofUseSale_01_08_2024.pdf",
+              "page": 8,
+              "chunk_id": 51
+            },
+            "display_name": "📄 documents\\Amazon.itConditionsofUseSale_01_08_2024.pdf",
+            "source_type": "pdf",
+            "score": 0.630455493927002
+          },
+          {
+            "text": "- Bank transfer: 3-5 business days\n- Store credit/voucher: Instant (10% bonus credit added)\nSHIPPING CHARGES ON RETURNS\n- Defective/wrong item: We cover return shipping\n- Change of mind: Customer pays Rs. 150 return shipping\nCANCELLATION POLICY\nOrders can be cancelled free of charge within 2 hours of placing.\nAfter 2 hours: cancellation may not be possible if already dispatched.\nContact us immediately at 0800-FAST for cancellation requests.\nEXCHANGE POLICY\nExchanges available for size/color variants only.\nSame process as returns — mention \"exchange\" in your email.\nExchange item dispatched within 1-2 business days after we receive your return.",
+            "metadata": {
+              "source": "documents\\returns_and_refunds.pdf",
               "page": 0,
-              "chunk_id": 338
+              "chunk_id": 85
             },
-            "display_name": "📄 documents\\shipping_policy.pdf",
+            "display_name": "📄 documents\\returns_and_refunds.pdf",
             "source_type": "pdf",
-            "score": 0.6325973272323608
-          },
-          {
-            "text": "Policy, available at apple.com/privacy (or any successor thereto).\n \n \nYou further acknowledge and agree that You shall make no attempt to reidentify an individual using any \ndata provided to You by Apple, including but not limited to reporting related to end users, without express \nwritten consent from Apple or where required by Law. Notwithstanding the foregoing, Personal Data \nassociated with Your use of the Apple Business Services, including name, email address, and phone",
-            "metadata": {
-              "source": "documents\\apple terms and conditions.pdf",
-              "page": 9,
-              "chunk_id": 69
-            },
-            "display_name": "📄 documents\\apple terms and conditions.pdf",
-            "source_type": "pdf",
-            "score": 0.6303054690361023
-          },
-          {
-            "text": "Subject to the Additional Terms for Managed Services, You acknowledge and agree that Apple may retain \nthe Organization Information, account information for accounts associated with the Organization, and \ninformation about Your (and each Representative’s) use of the Apple Business Services, including as may \nbe required by the Law of the jurisdiction(s) in which You reside or are located, or to which You are subject, \nor otherwise in accordance with Apple’s Privacy Policy, available at \nhttps://www.apple.com/legal/privacy/en-ww/ (or any successor thereto), and that such retention may persist \nbeyond Your cessation of use of the Apple Business Services. “ Law” means any (1) statute, decree, \nconstitution, regulation, order, or any directive of any Government Entity, (2) treaty, pact, compact, or other \nagreement to which any Government Entity is a signatory party, (3) judicial or administrative interpretation",
-            "metadata": {
-              "source": "documents\\apple terms and conditions.pdf",
-              "page": 2,
-              "chunk_id": 28
-            },
-            "display_name": "📄 documents\\apple terms and conditions.pdf",
-            "source_type": "pdf",
-            "score": 0.6288331747055054
+            "score": 0.62709641456604
           }
         ]
       },
       {
         "role": "user",
-        "content": "what i your return policy \nwhat is your shipment policy \nwhat is your carriage policy \nwhat is your delivery charges ?"
+        "content": "What is Apple's privacy policy?"
       },
       {
         "role": "assistant",
-        "content": "📦 **Order ORD-9974** (iPhone 15 Pro) is **In Transit**. Total: $1517.59",
+        "content": "Apple is committed to your privacy. Their customer Privacy Policy provides a clear explanation of how they collect, use, disclose, transfer, and store your information.\n\nYou can access and manage your Apple data by visiting your Apple account management page. For corrections or general enquiries, you can contact their privacy team.\n\nTopics covered in their privacy information include:\n*   Privacy Policy\n*   Apple ID and Family Sharing Disclosure\n*   Privacy Governance\n*   Government Information Requests\n*   Manage Your Account",
+        "sources": [
+          {
+            "text": "# Apple Customer Privacy Policy\n\nApple is committed to your privacy. Read our customer Privacy Policy for a clear explanation of how we collect, use, disclose, transfer, and store your information.\n\nTo access and manage your Apple data please visit [Manage your Apple account](https://appleid.apple.com/choose-your-country). For corrections or general enquiries, please [Contact Privacy](https://www.apple.com/legal/privacy/contact/).\n\nJavaScript is required to view this content.\n\n### Something went wrong.\n\nThe content for this page did not load correctly. Reload the page to try again.\n\nReload Page\n\n## Choose a Topic\n\nPrivacy Policy\n\nApple ID and Family Sharing Disclosure\n\nPrivacy Governance\n\nGovernment Information Requests\n\nManage Your Account",
+            "metadata": {
+              "source": "scraped_page.md",
+              "page": -1,
+              "chunk_id": 87
+            },
+            "display_name": "🌐 page",
+            "source_type": "web",
+            "score": 0.7639391422271729
+          },
+          {
+            "text": "[THIS IS A TEMPLATE PRIVACY POLICY. PLEASE READ ANDCHANGE THIS SO THATIT SUITS YOUR BUSINESS REQUIREMENTS]\nPrivacy policy\n1. Introduction\na. This privacy policy (“Privacy Policy”) applies to the collection and processing of personal data(“Personal Data”) byusinconnectionwithourwebsite.ThisPrivacyPolicywill helpyouunderstandhow we collect and use your Personal Data and what we do with it.\nb. By visiting our website and/ or purchasing something from us, you agree to us handling yourPersonal Data in accordance with this Privacy Policy.\n2. Personal data that we collect\na. Personal Dataincludes any informationaboutanindividual fromwhichthatpersoncanbeidentified.It does not includePersonal Datawheretheidentityhasbeenremoved(anonymousdata,e.g.yourIP Address).\nb. Information you may provide us through the websiteincludes:",
+            "metadata": {
+              "source": "documents\\Template-Privacy-policy.pdf",
+              "page": 0,
+              "chunk_id": 242
+            },
+            "display_name": "📄 documents\\Template-Privacy-policy.pdf",
+            "source_type": "pdf",
+            "score": 0.5846351981163025
+          },
+          {
+            "text": "We work with third parties, such as advertisers, publishers, social media networks, searchengines, ad serving companies, and advertising companies working on their behalf, to improvethe relevance of ads we serve. In providing you interest-based ads we do not associate yourinteractions on unaﬃliated sites with information which on its own identiﬁes you, such asname or email address, and we do not provide any such information to advertisers or to third-party sites that display our interest-based ads. Advertisers and other third parties may assumethat users who interact with or click on an interest-based ad or content are part of the groupthat the ad or content is directed towards (for example, users in a particular geographical areaor users who purchased or browsed for classical music). Some third-parties may provide uspseudonymized information about you (such as demographic information or sites where youhave been shown ads) from oﬄine and online sources that we may use to provide you",
+            "metadata": {
+              "source": "documents\\Interest-Based Ads - Amazon Customer Service.pdf",
+              "page": 0,
+              "chunk_id": 76
+            },
+            "display_name": "📄 documents\\Interest-Based Ads - Amazon Customer Service.pdf",
+            "source_type": "pdf",
+            "score": 0.584303617477417
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": "How many orders have I placed?"
+      },
+      {
+        "role": "assistant",
+        "content": "🛑 I'm just an assistant and don't have permission to place orders. You can place an order directly on our website or mobile app.",
         "sources": []
       },
       {
         "role": "user",
-        "content": "how many my orders ?\n\n"
+        "content": "How many orders have I placed?"
       },
       {
         "role": "assistant",
-        "content": "You have placed **2** order(s) in total.",
-        "sources": []
-      }
-    ],
-    "title": "where is my order ?",
-    "timestamp": "2026-07-01T13:55:02.420889"
-  },
-  "1782896907552": {
-    "messages": [
-      {
-        "role": "user",
-        "content": "how many products your company have ?"
-      },
-      {
-        "role": "assistant",
-        "content": "You have placed **2** orders. Active: 0 | Delivered: 2 | Cancelled: 0",
+        "content": "🛑 I'm just an assistant and don't have permission to place orders. You can place an order directly on our website or mobile app.",
         "sources": []
       },
       {
         "role": "user",
-        "content": "now ?"
+        "content": "How many orders have I placed?"
       },
       {
         "role": "assistant",
-        "content": "Our company currently offers over 500 unique products.",
+        "content": "You have placed **13** order(s) in total.",
         "sources": []
       },
       {
         "role": "user",
-        "content": "my status ?"
+        "content": "How many orders have I placed?"
       },
       {
         "role": "assistant",
-        "content": "📦 **Order ORD-4759** (iPhone 15 Pro) is **Processing**. Total: $620.39",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "total"
-      },
-      {
-        "role": "assistant",
-        "content": "The total for Order ORD-4759 is $620.39.",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "what is my overall status ?"
-      },
-      {
-        "role": "assistant",
-        "content": "📜 **Your Order History:**\n• `ORD-7634` | Sony Headphones | Delivered | 2026-06-25 | $1294.67\n• `ORD-9974` | iPhone 15 Pro | Delivered | 2026-06-23 | $1517.59\n• `ORD-5879` | iPhone 15 Pro | Cancelled | 2026-07-01 14:10 | $999.00\n• `ORD-2680` | Nike Air Max | Delivered | 2026-07-01 14:10 | $150.00\n• `ORD-4759` | iPhone 15 Pro | Shipped | 2026-07-01 14:12 | $620.39",
+        "content": "You have placed **13** orders in total.\n🔄 **Active:** 0\n✅ **Delivered:** 5\n❌ **Cancelled:** 8",
         "sources": []
       },
       {
@@ -245,111 +129,84 @@
       },
       {
         "role": "assistant",
-        "content": "Is there anything else I can assist you with today regarding your orders or anything else?",
+        "content": "Great! Is there anything else I can assist you with today?",
         "sources": []
       }
     ],
-    "title": "how many products your company have ?",
-    "timestamp": "2026-07-01T14:13:03.065325"
+    "title": "What is your return policy?",
+    "timestamp": "2026-07-06T20:33:13.345267"
   },
-  "1782897564029": {
+  "1783351993351": {
     "messages": [
       {
         "role": "user",
-        "content": "track my order "
+        "content": "How many orders have I placed?"
       },
       {
         "role": "assistant",
-        "content": "📋 I can see your order history, but I don't have permission to generate or track specific orders. You can track your orders by logging into your account on our website. I can tell you how many orders you've placed or list them for you!",
+        "content": "You have placed **13** order(s) in total.",
         "sources": []
       },
       {
         "role": "user",
-        "content": "list my orders "
+        "content": "How many orders have I placed?"
       },
       {
         "role": "assistant",
-        "content": "📜 **Your Order History:**\n• `ORD-7634` | Sony Headphones | Delivered | 2026-06-25 | $1294.67\n• `ORD-9974` | iPhone 15 Pro | Delivered | 2026-06-23 | $1517.59\n• `ORD-5879` | iPhone 15 Pro | Cancelled | 2026-07-01 14:10 | $999.00\n• `ORD-2680` | Nike Air Max | Delivered | 2026-07-01 14:10 | $150.00\n• `ORD-4759` | iPhone 15 Pro | Delivered | 2026-07-01 14:12 | $620.39",
+        "content": "You have placed **5** orders in total.\n🔄 **Active:** 0\n✅ **Delivered:** 5\n❌ **Cancelled:** 8",
         "sources": []
-      },
+      }
+    ],
+    "title": "How many orders have I placed?",
+    "timestamp": "2026-07-07T18:29:15.240959"
+  },
+  "1783352990465": {
+    "messages": [
       {
         "role": "user",
-        "content": "cancel ord-1234"
+        "content": "what is your policy ?"
       },
       {
         "role": "assistant",
-        "content": "🛑 I'm sorry, but I don't have permission to cancel orders directly. You can cancel your order by visiting your account on our website or contacting our support team. I can help you with order status or other information though!",
-        "sources": []
-      },
-      {
-        "role": "user",
-        "content": "place an order "
-      },
-      {
-        "role": "assistant",
-        "content": "To place an order, you need to browse our website, add items to your cart, proceed to checkout, enter your delivery address and payment details, and then confirm your order. You will receive an email and SMS confirmation immediately after.",
+        "content": "This Privacy Policy applies to the collection and processing of personal data in connection with our website. It explains how we collect and use your Personal Data. By visiting our website or purchasing from us, you agree to us handling your Personal Data according to this policy. Personal Data includes any information from which an individual can be identified, but not anonymous data like an IP Address.",
         "sources": [
           {
-            "text": "photograph. All such information is stored or used for processing  orders and under no \ncircumstance are any of these details made available in the public domain. We may use this \ninformation to send you further information regarding our services.",
+            "text": "[THIS IS A TEMPLATE PRIVACY POLICY. PLEASE READ ANDCHANGE THIS SO THATIT SUITS YOUR BUSINESS REQUIREMENTS]\nPrivacy policy\n1. Introduction\na. This privacy policy (“Privacy Policy”) applies to the collection and processing of personal data(“Personal Data”) byusinconnectionwithourwebsite.ThisPrivacyPolicywill helpyouunderstandhow we collect and use your Personal Data and what we do with it.\nb. By visiting our website and/ or purchasing something from us, you agree to us handling yourPersonal Data in accordance with this Privacy Policy.\n2. Personal data that we collect\na. Personal Dataincludes any informationaboutanindividual fromwhichthatpersoncanbeidentified.It does not includePersonal Datawheretheidentityhasbeenremoved(anonymousdata,e.g.yourIP Address).\nb. Information you may provide us through the websiteincludes:",
             "metadata": {
-              "source": "documents\\Amazon privacy policy.pdf",
+              "source": "documents\\Template-Privacy-policy.pdf",
               "page": 0,
-              "chunk_id": 3
+              "chunk_id": 242
             },
-            "display_name": "📄 documents\\Amazon privacy policy.pdf",
+            "display_name": "📄 documents\\Template-Privacy-policy.pdf",
             "source_type": "pdf",
-            "score": 0.6564833521842957
+            "score": 0.6279574036598206
           },
           {
-            "text": "FAST DELIVERY CO. — FREQUENTLY ASKED QUESTIONS\nQ: How do I place an order?\nA: Browse our website, add items to cart, proceed to checkout, enter your delivery address and\npayment details, and confirm your order. You will receive an email and SMS confirmation immediately.\nQ: What payment methods do you accept?\nA: We accept JazzCash, EasyPaisa, credit/debit cards (Visa/Mastercard), bank transfer, and Cash on\nDelivery (COD) for orders up to Rs. 10,000.\nQ: Is Cash on Delivery available?\nA: Yes, COD is available for orders up to Rs. 10,000 across Pakistan. COD orders may take 1 extra\nbusiness day to process.\nQ: My payment failed but amount was deducted. What do I do?\nA: This is a temporary hold by your bank. The amount is automatically reversed within 3-5 business\ndays. If not reversed, contact your bank with the transaction reference number.\nQ: Can I change my delivery address after ordering?\nA: Address changes are possible within 2 hours of ordering. Contact us immediately at 0800-FAST.",
+            "text": "ket%22%3A%22%22%2C%22scm%22%3A%221007.41208.490003%22%2C%22bztag%22%3A%22%22%2C%22pageTypeOne%22%3A%22Home%22%2C%22mc_is_bs%22%3A%220%22%2C%22linkInfo%22%3A%22null%22%2C%22enable_smui_template%22%3A%22%22%2C%22utdid%22%3A%22-1%22%2C%22ms%22%3A%221.6186%22%2C%22mt%22%3A%22HOT%22%2C%22i14d%22%3A%220.0%22%2C%22is%22%3A%22null%22%2C%22tr_id%22%3A%220%22%2C%22traffic_source%22%3A%22paid%22%2C%22venture%22%3A%22PK%22%2C%22i30d%22%3A%220.0%22%2C%22smui_template%22%3A%22-1%22%2C%22domain%22%3A%22bumblebee%22%2C%22i7d%22%3A%220.0%22%2C%22pg%22%3A%2280330265%22%2C%22ids%22%3A%22null%22%2C%22rank1_score%22%3A%229.999999974752427E-7%22%2C%22mc_bztag%22%3A%22%22%2C%22i3d%22%3A%220.0%22%2C%22config%22%3A%2226814257%22%2C%22i1d%22%3A%220.0%22%2C%22enable_smui%22%3A%22false%22%7D)",
             "metadata": {
-              "source": "documents\\faqs.pdf",
-              "page": 0,
+              "source": "scraped_shipping-policy.md",
+              "page": -1,
               "chunk_id": 191
             },
-            "display_name": "📄 documents\\faqs.pdf",
-            "source_type": "pdf",
-            "score": 0.6372270584106445
+            "display_name": "🌐 shipping-policy",
+            "source_type": "web",
+            "score": 0.614069938659668
           },
           {
-            "text": "WHAT TO DO IF YOUR ORDER IS LATE:\n- Check your tracking number via SMS or email confirmation\n- Allow 1 extra business day before contacting support\n- Contact us at support@fastdelivery.pk or call 0800-FAST\n- Provide your order number for fastest resolution\nTRACKING YOUR ORDER\nYou will receive an SMS with a tracking link within 24 hours of dispatch.\nTrack live at: www.fastdelivery.pk/track\nCourier partners: TCS, Leopards, M&P, Trax\nFAILED DELIVERY POLICY\nIf delivery fails twice, your order returns to our warehouse.\nWe will contact you within 2 business days to reschedule.\nRe-delivery charge: Rs. 100\nDAMAGED OR WRONG ITEM RECEIVED\nReport within 24 hours of delivery with photo evidence.\nEmail: complaints@fastdelivery.pk\nReplacement dispatched within 2-3 business days.",
+            "text": "ucket%22%3A%22%22%2C%22scm%22%3A%221007.41208.490003%22%2C%22bztag%22%3A%22%22%2C%22pageTypeOne%22%3A%22Home%22%2C%22mc_is_bs%22%3A%220%22%2C%22linkInfo%22%3A%22null%22%2C%22enable_smui_template%22%3A%22%22%2C%22utdid%22%3A%22-1%22%2C%22ms%22%3A%221.4055%22%2C%22mt%22%3A%22HOT%22%2C%22i14d%22%3A%220.0%22%2C%22is%22%3A%22null%22%2C%22tr_id%22%3A%220%22%2C%22traffic_source%22%3A%22paid%22%2C%22venture%22%3A%22PK%22%2C%22i30d%22%3A%220.0%22%2C%22smui_template%22%3A%22-1%22%2C%22domain%22%3A%22bumblebee%22%2C%22i7d%22%3A%220.0%22%2C%22pg%22%3A%2280330265%22%2C%22ids%22%3A%22null%22%2C%22rank1_score%22%3A%229.999999974752427E-7%22%2C%22mc_bztag%22%3A%22%22%2C%22i3d%22%3A%220.0%22%2C%22config%22%3A%2226814257%22%2C%22i1d%22%3A%220.0%22%2C%22enable_smui%22%3A%22false%22%7D)",
             "metadata": {
-              "source": "documents\\shipping_policy.pdf",
-              "page": 0,
-              "chunk_id": 338
+              "source": "scraped_shipping-policy.md",
+              "page": -1,
+              "chunk_id": 224
             },
-            "display_name": "📄 documents\\shipping_policy.pdf",
-            "source_type": "pdf",
-            "score": 0.6065914630889893
+            "display_name": "🌐 shipping-policy",
+            "source_type": "web",
+            "score": 0.6129662990570068
           }
         ]
-      },
-      {
-        "role": "user",
-        "content": "total spent "
-      },
-      {
-        "role": "assistant",
-        "content": "💰 Your total spent across all delivered orders is **$3582.65**.",
-        "sources": []
       }
     ],
-    "title": "track my order ",
-    "timestamp": "2026-07-01T14:20:54.206018"
-  },
-  "1782904273380": {
-    "messages": [
-      {
-        "role": "user",
-        "content": "hi"
-      },
-      {
-        "role": "assistant",
-        "content": "Hello! How can I help you today?",
-        "sources": []
-      }
-    ],
-    "title": "hi",
-    "timestamp": "2026-07-01T16:11:17.895920"
+    "title": "what is your policy ?",
+    "timestamp": "2026-07-06T20:49:54.488855"
   }
 }
